@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MaxNUMBERSize 1000
+
+void insertionSort(int list[], int n) {
+//sort list[0] to list[n-1] in ascending order
+        int h;
+	for ( h = 1; h < n; h++) {
+		int key = list[h];
+		int k = h - 1; //start comparing with previous item
+		while (k >= 0 && key < list[k]) {
+			list[k + 1] = list[k];
+			--k;
+		}
+		list[k + 1] = key;
+	} //end for
+} //end insertionSort
+int main (void)
+{
+   
+   int arr[MaxNUMBERSize];
+   FILE *fp, *fp1, *fp2, *outfp;
+   int c = 0;
+   int n = 0;
+   insertionSort(arr, n);
+
+  
+   fp = fopen("list0.txt","r");
+   if(fp == NULL) 
+   {
+      printf("Error in opening file");
+      return(0);
+   }
+   while(1)
+    {
+       if( feof(fp))
+       {
+        break;
+       }
+      
+         if(n < MaxNUMBERSize)
+         {
+         
+          fscanf(fp, "%d\n", &arr[n]);
+          ++n;
+         }
+     } 
+   fclose(fp);
+
+   fp1 = fopen("list1.txt","r");
+   if(fp1 == NULL) 
+   {
+      printf("Error in opening file");
+      return(0);
+   }
+   while(1)
+    {
+       if( feof(fp1))
+       {
+        break;
+       }
+      
+         if(n < MaxNUMBERSize)
+         {
+          fscanf(fp1, "%d\n", &arr[n]);
+          ++n;
+         }
+     } 
+   fclose(fp1);
+
+   fp2 = fopen("list2.txt","r");
+   if(fp2 == NULL) 
+   {
+      printf("Error in opening file");
+      return(0);
+   }
+   while(1)
+    {
+       if( feof(fp2))
+       {
+        break;
+       }
+      
+         if(n < MaxNUMBERSize)
+         {
+          fscanf(fp2, "%d\n", &arr[n]);
+          ++n;
+         }
+     } 
+   fclose(fp2);
+
+   outfp = fopen("hw3.txt","w");
+   if(fp2 == NULL) 
+   {
+      printf("Error in opening file");
+      return(0);
+   }
+
+    
+   insertionSort(arr, n);
+   for(c; c < n; ++c)
+   {
+     fprintf(outfp,"%d\n", arr[c]);
+   }
+  
+   fclose(outfp);
+
+
+   return(0);
+} 
