@@ -25,7 +25,7 @@ int main (void)
    insertionSort(arr, n);
 
   
-   fp = fopen("list0.txt","r");
+   fp = (FILE *) malloc(sizeof(fopen("list0.txt","r")));
    if(fp == NULL) 
    {
       printf("Error in opening file");
@@ -45,9 +45,10 @@ int main (void)
           ++n;
          }
      } 
+   free(fp);
    fclose(fp);
 
-   fp1 = fopen("list1.txt","r");
+   fp1 = (FILE *)malloc(sizeof(fopen("list1.txt","r")));
    if(fp1 == NULL) 
    {
       printf("Error in opening file");
@@ -66,9 +67,10 @@ int main (void)
           ++n;
          }
      } 
+   free(fp1);
    fclose(fp1);
 
-   fp2 = fopen("list2.txt","r");
+   fp2 = (FILE *) malloc(sizeof(fopen("list2.txt","r")));
    if(fp2 == NULL) 
    {
       printf("Error in opening file");
@@ -86,10 +88,11 @@ int main (void)
           fscanf(fp2, "%d\n", &arr[n]);
           ++n;
          }
-     } 
+     }
+   free(fp2); 
    fclose(fp2);
 
-   outfp = fopen("hw3.txt","w");
+   outfp = (FILE *)malloc(sizeof(fopen("hw3.txt","w")));
    if(fp2 == NULL) 
    {
       printf("Error in opening file");
@@ -102,7 +105,7 @@ int main (void)
    {
      fprintf(outfp,"%d\n", arr[c]);
    }
-  
+   free(outfp);
    fclose(outfp);
 
 
